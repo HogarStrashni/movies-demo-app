@@ -1,19 +1,29 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const BASE_URL: string = `https://www.omdbapi.com/?apikey=${
-  import.meta.env.VITE_API_KEY
-}&s=batman`;
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+//PAGES
+import Home from "./pages/Home";
+import Search from "./pages/Search";
+import MyList from "./pages/MyList";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
-  useEffect(() => {
-    axios
-      .get(BASE_URL)
-      .then((response) => console.log(response.data.Search))
-      .catch((error) => console.log(error.message));
-  }, []);
-
-  return <main className="bg-gray-400">HelloWorld</main>;
+  return (
+    <>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/my-list" element={<MyList />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
