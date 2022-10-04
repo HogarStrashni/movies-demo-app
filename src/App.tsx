@@ -11,18 +11,16 @@ import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/my-list" element={<MyList />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/my-list" element={<MyList />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 

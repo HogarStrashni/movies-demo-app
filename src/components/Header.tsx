@@ -11,7 +11,7 @@ const Header = () => {
     "px-3 py-2 rounded-lg hover:ring-1 hover:ring-blue-300 hover:text-blue-300 cursor-pointer";
 
   return (
-    <header className="bg-slate-900 px-4 border-b-2 border-b-gray-800 flex flex-col items-center lg:px-16 md:px-12 sm:px-6">
+    <header className="bg-black px-4 flex flex-col items-center lg:px-16 md:px-12 sm:px-6">
       <div className="w-full mt-2 text-gray-200 flex flex-col items-center italic font-bold sm:flex-row sm:mt-8 sm:mb-5">
         <div className="flex">
           <RiMovie2Line className="text-3xl text-blue-300" />
@@ -35,8 +35,12 @@ const Header = () => {
         </div>
       </div>
       <div className="flex mb-2">
-        <button className={buttonUI}>SEARCH</button>
-        <button className={buttonUI}>MY LIST</button>
+        <button className={buttonUI} onClick={() => navigate("/search")}>
+          SEARCH
+        </button>
+        <button className={buttonUI} onClick={() => navigate("/my-list")}>
+          MY LIST
+        </button>
       </div>
     </header>
   );

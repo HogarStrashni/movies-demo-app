@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 px-4 flex justify-between text-gray-400 border-t-2 border-t-gray-800 lg:px-16 md:px-12 sm:px-6">
+    <footer className="bg-black px-4 flex justify-between text-gray-400 lg:px-16 md:px-12 sm:px-6">
       <div className="h-12 flex items-center">
         <a
           href="https://creativecommons.org/licenses/by/4.0/"
