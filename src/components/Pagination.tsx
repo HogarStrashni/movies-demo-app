@@ -12,7 +12,7 @@ const Pagination = ({ totalPages }: any) => {
     "w-8 mx-2 disabled:opacity-30 disabled:cursor-not-allowed";
 
   return (
-    <>
+    totalPages && (
       <div className="flex justify-center align-center m-6">
         <button
           className={`${pagButtonUI} ${pagButtonDisabledUI}`}
@@ -32,7 +32,7 @@ const Pagination = ({ totalPages }: any) => {
           <FaChevronRight className="text-center inline pb-1" />
         </button>
       </div>
-    </>
+    )
   );
 };
 

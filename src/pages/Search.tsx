@@ -4,10 +4,15 @@ import SearchBar from "../components/SearchBar";
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
 import LoadingStage from "../components/LoadingStage";
+import ModalMovie from "../components/ModalMovie";
 
 const BASE_URL: string = `https://www.omdbapi.com/?apikey=${
   import.meta.env.VITE_API_KEY
-}&s=batman`;
+}&type=movie&s=batman`;
+
+const BASE_URL_SINGLE: string = `https://www.omdbapi.com/?apikey=${
+  import.meta.env.VITE_API_KEY
+}&type=movie&i=tt0372784`;
 
 function Search() {
   const [movieList, setMovieList] = useState([]);
@@ -15,12 +20,15 @@ function Search() {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [singleMovie, setSingleMovie] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
   useEffect(() => {
     axios
       .get(BASE_URL)
       .then((response) => {
         setMovieList(response.data.Search);
-        setTotalPages(response.data.totalResults);
+        setTotalPages(Math.ceil(response.data.totalResults / 10));
         setIsLoading(false);
       })
       .catch((error) => {
@@ -29,11 +37,22 @@ function Search() {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(BASE_URL_SINGLE)
+      .then((response) => setSingleMovie(response.data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
+
   console.log(movieList);
   console.log(totalPages);
+  console.log(singleMovie);
 
   return (
     <>
+      {isModalOpen && <ModalMovie singleMovie={singleMovie} />}
       {isLoading && <LoadingStage />}
       <main className="bg-black opacity-90 flex-1 overflow-auto">
         <div className="max-w-lg mx-auto pt-6 flex justify-center">
