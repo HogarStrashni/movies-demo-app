@@ -35,8 +35,7 @@ function Search() {
   return (
     <>
       {isLoading && <LoadingStage />}
-
-      <main className="bg-black bg-opacity-95 flex-1 overflow-auto">
+      <main className="bg-black opacity-90 flex-1 overflow-auto">
         <div className="max-w-lg mx-auto pt-6 flex justify-center">
           <SearchBar />
         </div>

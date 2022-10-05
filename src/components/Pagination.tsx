@@ -6,26 +6,26 @@ const Pagination = ({ totalPages }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // TailWindCSS styling
-  const pagButton =
-    "py-0.5 text-xs font-medium text-gray-700 bg-white border border-blue-100 focus:outline-none hover:bg-gray-200 rounded-lg";
-  const pagButtonDisabled =
-    "w-8 mx-2 disabled:opacity-50 disabled:cursor-not-allowed";
+  const pagButtonUI =
+    "pt-0.5 text-xs font-medium text-yellow-500 bg-black border border-yellow-500 focus:outline-none hover:bg-gray-900 rounded-lg";
+  const pagButtonDisabledUI =
+    "w-8 mx-2 disabled:opacity-30 disabled:cursor-not-allowed";
 
   return (
     <>
-      <div className="flex justify-center align-center m-8">
+      <div className="flex justify-center align-center m-6">
         <button
-          className={`${pagButton} ${pagButtonDisabled}`}
+          className={`${pagButtonUI} ${pagButtonDisabledUI}`}
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage <= 1}
         >
           <FaChevronLeft className="text-center inline pb-1" />
         </button>
-        <p className="mx-2 text-sm font-medium text-gray-200 italic">
+        <p className="mx-2 text-sm font-medium text-gray-400 italic">
           current page: {currentPage} / {totalPages}
         </p>
         <button
-          className={`${pagButton} ${pagButtonDisabled}`}
+          className={`${pagButtonUI} ${pagButtonDisabledUI}`}
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={currentPage >= totalPages}
         >
