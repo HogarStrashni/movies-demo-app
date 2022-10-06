@@ -7,7 +7,7 @@ const Header = () => {
 
   // TailWindCSS styling
   const buttonUI =
-    "w-40 m-4 py-1.5 flex items-center justify-center text-sm font-medium text-gray-200 ring-1 ring-gray-200 hover:text-blue-300 hover:ring-blue-300 hover:bg-slate-800 rounded-lg sm:px-2";
+    "w-40 m-4 pt-2 pb-1.5 flex items-center justify-center text-sm font-medium text-gray-200 ring-1 ring-gray-200 hover:text-blue-300 hover:ring-blue-300 hover:bg-slate-800 rounded-lg";
   const linksUI =
     "px-3 py-2 rounded-lg hover:ring-1 hover:ring-blue-300 hover:text-blue-300 cursor-pointer";
 

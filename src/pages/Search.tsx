@@ -21,7 +21,7 @@ function Search() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [singleMovie, setSingleMovie] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     axios

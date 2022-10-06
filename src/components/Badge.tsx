@@ -5,10 +5,10 @@ const Badge = () => {
   return (
     <div>
       <p
-        className={`px-1.5 rounded-full border-2 ${
+        className={`px-1.5 rounded-full ring-2 ${
           badgeNumber
-            ? "text-yellow-500 border-yellow-500"
-            : "text-gray-300 border-gray-300"
+            ? "text-yellow-500 ring-yellow-500"
+            : "text-gray-300 ring-gray-300"
         }`}
       >
         {badgeNumber}
