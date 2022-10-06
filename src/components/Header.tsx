@@ -7,7 +7,7 @@ const Header = () => {
 
   // TailWindCSS styling
   const buttonUI =
-    "w-40 m-4 pt-2 pb-1.5 flex items-center justify-center text-sm font-medium text-gray-200 ring-1 ring-gray-200 hover:text-blue-300 hover:ring-blue-300 hover:bg-slate-800 rounded-lg";
+    "w-40 m-4 pt-2 pb-1.5 flex items-center justify-center text-sm font-medium text-gray-200 ring-1 ring-gray-200 hover:text-blue-300 hover:ring-blue-300 hover:scale-[1.02] transition-all rounded-lg";
   const linksUI =
     "px-3 py-2 rounded-lg hover:ring-1 hover:ring-blue-300 hover:text-blue-300 cursor-pointer";
 
@@ -15,7 +15,7 @@ const Header = () => {
     <header className="bg-black px-4 flex flex-col items-center lg:px-16 md:px-12 sm:px-6">
       <div className="w-full mt-2 text-gray-200 flex flex-col items-center italic font-bold sm:flex-row sm:mt-8 sm:mb-2">
         <div
-          className="flex hover:cursor-pointer hover:opacity-90"
+          className="flex hover:cursor-pointer hover:opacity-80"
           onClick={() => navigate("/")}
         >
           <RiMovie2Line className="text-3xl text-blue-300" />

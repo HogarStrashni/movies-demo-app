@@ -5,6 +5,8 @@ import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
 import LoadingStage from "../components/LoadingStage";
 import ModalMovie from "../components/ModalMovie";
+import { Toaster } from "react-hot-toast";
+import { infoChanged } from "../services/toastLogic";
 
 const BASE_URL: string = `https://www.omdbapi.com/?apikey=${
   import.meta.env.VITE_API_KEY
@@ -52,6 +54,7 @@ function Search() {
 
   return (
     <>
+      <Toaster />
       {isModalOpen && <ModalMovie singleMovie={singleMovie} />}
       {isLoading && <LoadingStage />}
       <main className="bg-black opacity-90 flex-1 overflow-auto">
@@ -62,7 +65,14 @@ function Search() {
           <section className="mx-auto mt-6 grid grid-cols-1 gap-4 justify-center content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {movieList?.map((item) => {
               const { imdbID, Poster, Title } = item;
-              return <MovieCard key={imdbID} poster={Poster} title={Title} />;
+              return (
+                <MovieCard
+                  key={imdbID}
+                  poster={Poster}
+                  title={Title}
+                  infoChanged={infoChanged}
+                />
+              );
             })}
           </section>
         </div>
