@@ -43,7 +43,7 @@ const Header = () => {
         </div>
       </div>
       <div className="flex mb-2">
-        <button className={buttonUI} onClick={() => navigate("/search")}>
+        <button className={buttonUI} onClick={() => navigate("/")}>
           SEARCH
         </button>
         <button className={buttonUI} onClick={() => navigate("/my-list")}>
