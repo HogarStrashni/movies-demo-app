@@ -1,7 +1,12 @@
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const ModalMovie = ({ singleMovie }: any) => {
+const ModalMovie = ({
+  singleMovie,
+  setIsModalOpen,
+  queryPart,
+  pageNumber,
+}: any) => {
   const {
     Title,
     Poster,
@@ -15,6 +20,7 @@ const ModalMovie = ({ singleMovie }: any) => {
   }: any = singleMovie;
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const movieData = [Genre, Year, Plot, Director, Writer, Actors];
   const movieHelpData = [
@@ -38,7 +44,7 @@ const ModalMovie = ({ singleMovie }: any) => {
 
   return (
     <>
-      <div className="h-full w-full absolute bg-black z-10" />
+      <div className="h-full w-full absolute bg-black opacity-90 z-10" />
       <main className="h-full w-full absolute z-50 text-gray-200 overflow-auto">
         <div className="flex flex-col min-h-full items-center justify-center">
           <section className="m-4 mb-0 sm:mb-2">
@@ -74,7 +80,15 @@ const ModalMovie = ({ singleMovie }: any) => {
             </section>
           </div>
           <div className="mb-4 mt-2 flex justify-center sm:mt-4">
-            <button className={closeButtonUI}>CLOSE</button>
+            <button
+              className={closeButtonUI}
+              onClick={() => {
+                setIsModalOpen(false);
+                navigate(`/?query=${queryPart}&page=${pageNumber}`);
+              }}
+            >
+              CLOSE
+            </button>
             <button className={handleButtonUI}>
               {location.pathname === "/search"
                 ? "ADD TO MY LIST"
