@@ -38,9 +38,9 @@ const ModalMovie = ({
     "min-w-[76px] pl-4 py-1 text-xs font-medium text-gray-400 lg:py-3";
   const ddTagUI = "pr-6 pt-0.5 text-sm font-medium text-gray-200 lg:py-2.5";
   const closeButtonUI =
-    "mx-2 pt-2 pb-1.5 px-4 text-sm font-medium opacity-60 text-gray-400 ring-1 ring-gray-400 hover:opacity-100 rounded-lg";
+    "mx-2 pt-2 pb-1.5 px-4 text-sm font-medium opacity-60 text-gray-400 ring-1 ring-gray-400 hover:opacity-100 hover:scale-[1.02] transition-all rounded-lg";
   const handleButtonUI =
-    "mx-2 pt-2 pb-1.5 px-4 flex items-center justify-center text-sm font-medium opacity-80 text-yellow-500 ring-1 ring-yellow-500 hover:opacity-100 hover:bg-gray-900 rounded-lg";
+    "mx-2 pt-2 pb-1.5 px-4 flex items-center justify-center text-sm font-medium opacity-80 text-yellow-500 ring-1 ring-yellow-500 hover:opacity-100 hover:bg-gray-900 hover:scale-[1.02] transition-all rounded-lg";
 
   return (
     <>

@@ -6,9 +6,9 @@ const Pagination = ({ totalPages, queryPart, pageNumber }: any) => {
 
   // TailWindCSS styling
   const pagButtonUI =
-    "pt-0.5 text-xs font-medium text-yellow-500 bg-black border border-yellow-500 focus:outline-none hover:bg-gray-900 rounded-lg";
+    "pt-0.5 text-xs font-medium text-yellow-500 bg-black border border-yellow-500 focus:outline-none hover:bg-gray-900 hover:scale-[1.06] transition-all rounded-lg";
   const pagButtonDisabledUI =
-    "w-8 mx-2 disabled:opacity-30 disabled:cursor-not-allowed";
+    "w-8 mx-2 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100";
 
   return (
     totalPages && (

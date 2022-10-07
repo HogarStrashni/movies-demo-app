@@ -16,7 +16,7 @@ const Footer = () => {
           className="italic text-xs font-medium"
           target="_blanc"
         >
-          <p className="flex items-center hover:text-blue-300">
+          <p className="flex items-center hover:text-blue-300 hover:scale-[1.03] transition-all">
             <span className="text-base">
               <FaCreativeCommons />
             </span>
@@ -31,28 +31,28 @@ const Footer = () => {
         <a
           href="https://www.linkedin.com/in/djordje-matic/"
           target="_blanc"
-          className="hover:text-blue-300"
+          className="hover:text-blue-300 hover:scale-110 transition-all"
         >
           <FaLinkedin />
         </a>
         <a
           href="https://github.com/HogarStrashni"
           target="_blanc"
-          className="hover:text-blue-300"
+          className="hover:text-blue-300 hover:scale-110 transition-all"
         >
           <FaGithub />
         </a>
         <a
           href="https://www.freecodecamp.org/HogarStrashni"
           target="_blanc"
-          className="hover:text-blue-300"
+          className="hover:text-blue-300 hover:scale-110 transition-all"
         >
           <FaFreeCodeCamp />
         </a>
         <a
           href="mailto:djmatic@agfbl.org"
           target="_blanc"
-          className="hover:text-blue-300"
+          className="hover:text-blue-300 hover:scale-110 transition-all"
         >
           <FaMailBulk />
         </a>
