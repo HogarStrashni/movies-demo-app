@@ -1,11 +1,21 @@
-import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDebouncedCallback } from "use-debounce";
 
-const SearchBar = ({ queryPart, pageNumber }: any) => {
+const SearchBar = ({ queryPart }: any) => {
   const navigate = useNavigate();
 
-  console.log(queryPart);
-  console.log(pageNumber);
+  // Implementing debunce on input value
+  const [inputValue, setInputValue] = useState("");
+  const debouncedInputValue = useDebouncedCallback(
+    () => navigate(inputValue ? `/?query=${inputValue}&page=1` : "/"),
+    500
+  );
+  // Synchronization between debouncedInputValue and queryPart
+  useEffect(() => {
+    setInputValue(queryPart);
+  }, [queryPart]);
 
   return (
     <form
@@ -18,13 +28,12 @@ const SearchBar = ({ queryPart, pageNumber }: any) => {
           queryPart ? "border-yellow-500" : "border-blue-300"
         }`}
         placeholder="Search..."
-        value={queryPart}
-        autoFocus={queryPart}
-        onChange={(event) =>
-          event.target.value
-            ? navigate(`/?s=${event.target.value}&page=${pageNumber}`)
-            : navigate("/")
-        }
+        value={inputValue}
+        autoFocus={Boolean(inputValue)}
+        onChange={(event) => {
+          setInputValue(event.target.value);
+          debouncedInputValue();
+        }}
       />
       <FaSearch className="text-gray-200 absolute left-4 bottom-3" />
     </form>

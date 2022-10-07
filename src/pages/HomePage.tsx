@@ -21,13 +21,14 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [searchParams] = useSearchParams();
-  const queryPart: string = searchParams.get("s") ?? "";
+  const queryPart: string = searchParams.get("query") ?? "";
   let pageNumber: string | number = searchParams.get("page") ?? 1;
 
   const [singleMovie, setSingleMovie] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     axiosInstance
       .get("/", {
         params: {
@@ -57,10 +58,6 @@ function HomePage() {
       });
   }, []);
 
-  console.log(movieList);
-  console.log(totalPages);
-  console.log(singleMovie);
-
   return (
     <>
       {isModalOpen && <ModalMovie singleMovie={singleMovie} />}
@@ -71,7 +68,7 @@ function HomePage() {
         } flex-1 overflow-auto`}
       >
         <div className="max-w-lg mx-auto pt-6 flex justify-center">
-          <SearchBar queryPart={queryPart} pageNumber={pageNumber} />
+          <SearchBar queryPart={queryPart} />
         </div>
         {!queryPart && (
           <div className="h-[calc(100%-120px)] py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
@@ -109,7 +106,11 @@ function HomePage() {
             })}
           </section>
         </div>
-        <Pagination totalPages={totalPages} />
+        <Pagination
+          totalPages={totalPages}
+          queryPart={queryPart}
+          pageNumber={pageNumber}
+        />
       </main>
     </>
   );
