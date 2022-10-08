@@ -2,7 +2,7 @@ const LoadingStage = () => {
   return (
     <>
       <main className="h-full w-full absolute z-10 flex justify-center items-center">
-        <div className="w-1/4 h-1/4 mt-[5%] bg-black bg-opacity-40 rounded-lg flex justify-center items-center">
+        <div className="mt-[5%] flex justify-center items-center">
           <div role="status">
             <svg
               className="inline mr-2 w-12 h-12 text-gray-200 animate-spin fill-blue-400"

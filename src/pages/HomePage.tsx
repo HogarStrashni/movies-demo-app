@@ -95,7 +95,7 @@ function HomePage() {
         </div>
 
         {!queryPart && <LandingPart />}
-        {queryPart && !movieList?.length && (
+        {queryPart && !movieList?.length && !isLoading && (
           <div className="h-[calc(100%-120px)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
             <p className="text-2xl">
               The search query should contain the exact word of the movie title
