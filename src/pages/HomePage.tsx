@@ -94,7 +94,7 @@ function HomePage() {
           <SearchBar queryPart={queryPart} />
         </div>
 
-        {!queryPart && <LandingPart />}
+        {!queryPart && !titleID && <LandingPart />}
         {queryPart && !movieList?.length && !isLoading && (
           <div className="h-[calc(100%-25%)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
             <p className="text-2xl">
