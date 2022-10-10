@@ -96,7 +96,7 @@ function HomePage() {
 
         {!queryPart && <LandingPart />}
         {queryPart && !movieList?.length && !isLoading && (
-          <div className="h-[calc(100%-120px)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
+          <div className="h-[calc(100%-25%)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
             <p className="text-2xl">
               The search query should contain the exact word of the movie title
             </p>
@@ -116,7 +116,7 @@ function HomePage() {
                     )
                   }
                 >
-                  <MovieCard poster={Poster} title={Title} />
+                  <MovieCard poster={Poster} title={Title} imdbID={imdbID} />
                 </div>
               );
             })}

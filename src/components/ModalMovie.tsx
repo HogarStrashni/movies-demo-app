@@ -1,5 +1,7 @@
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useMyMoviesData } from "../services/context";
+import { infoToasterChanges } from "../services/infoToasterLogic";
 
 const ModalMovie = ({
   singleMovie,
@@ -7,7 +9,10 @@ const ModalMovie = ({
   queryPart,
   pageNumber,
 }: any) => {
+  const { myMovies, setMyMovies, myMovieIDs }: any = useMyMoviesData();
+
   const {
+    imdbID,
     Title,
     Poster,
     imdbRating,
@@ -19,7 +24,6 @@ const ModalMovie = ({
     Actors,
   }: any = singleMovie;
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const movieData = [Genre, Year, Plot, Director, Writer, Actors];
@@ -31,6 +35,22 @@ const ModalMovie = ({
     "Writer",
     "Actors",
   ];
+
+  const addMovieHandler = () => {
+    setMyMovies([...myMovies, singleMovie]);
+    setIsModalOpen(false);
+    infoToasterChanges("Movie successfully added to My List");
+    navigate(`/?query=${queryPart}&page=${pageNumber}`);
+  };
+
+  const removeMovieHandler = () => {
+    setMyMovies(
+      myMovies.filter((item: any) => item.imdbID !== singleMovie.imdbID)
+    );
+    setIsModalOpen(false);
+    infoToasterChanges("Movie successfully removed from My List");
+    navigate(`/?query=${queryPart}&page=${pageNumber}`);
+  };
 
   // TailWindCSS styling
   const dlTagUI = "flex border-b border-gray-500 max-w-lg mt-1 mx-4";
@@ -89,14 +109,21 @@ const ModalMovie = ({
             >
               CLOSE
             </button>
-            <button className={handleButtonUI}>
-              {location.pathname === "/search"
-                ? "ADD TO MY LIST"
-                : "REMOVE FROM LIST"}
-              <span className="text-xl pl-2 -translate-y-0.5">
-                {location.pathname === "/search" ? <FaStar /> : <FaRegStar />}
-              </span>
-            </button>
+            {!myMovieIDs.has(imdbID) ? (
+              <button className={handleButtonUI} onClick={addMovieHandler}>
+                ADD TO MY LIST
+                <span className="text-xl pl-2 -translate-y-0.5">
+                  <FaStar />
+                </span>
+              </button>
+            ) : (
+              <button className={handleButtonUI} onClick={removeMovieHandler}>
+                REMOVE FROM LIST
+                <span className="text-xl pl-2 -translate-y-0.5">
+                  <FaRegStar />
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </main>

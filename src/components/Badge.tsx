@@ -1,14 +1,14 @@
+import { useMyMoviesData } from "../services/context";
+
 const Badge = () => {
-  // for badge control purposes
-  const badgeNumber = 2;
+  const { myMovies }: any = useMyMoviesData();
+  const badgeNumber = myMovies?.length;
 
   return (
     <div>
       <p
-        className={`px-1.5 rounded-full ring-2 ${
-          badgeNumber
-            ? "text-yellow-500 ring-yellow-500"
-            : "text-gray-300 ring-gray-300"
+        className={`px-1.5 ml-1.5 rounded-full ring-2 ${
+          badgeNumber ? "text-yellow-500 ring-yellow-500" : "hidden"
         }`}
       >
         {badgeNumber}

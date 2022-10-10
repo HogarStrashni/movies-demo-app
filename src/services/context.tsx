@@ -1,20 +1,26 @@
-import { useContext, useState, createContext } from "react";
+import { useContext, useState, createContext, useEffect } from "react";
+import localStorageLogic from "./localStorageLogic";
 
 const LocalStorageContext = createContext({});
 
-const LocalStorageProvider = ({ children }: any) => {
-  const [myLocalStorage, setMyLocalStorage] = useState([]);
+export const LocalStorageProvider = ({ children }: any) => {
+  const initialState = localStorageLogic.get("myMovieList") || [];
+  const [myMovies, setMyMovies] = useState(initialState);
+
+  useEffect(() => {
+    localStorageLogic.set("myMovieList", myMovies);
+  }, [myMovies]);
+
+  const myMovieIDs = new Set(myMovies.map((item: any) => item.imdbID));
 
   return (
-    <LocalStorageContext.Provider value={{ myLocalStorage, setMyLocalStorage }}>
+    <LocalStorageContext.Provider value={{ myMovies, setMyMovies, myMovieIDs }}>
       {children}
     </LocalStorageContext.Provider>
   );
 };
 
-// Create custom hook
-const useLocalStorage = () => {
+// Custom hook
+export const useMyMoviesData = () => {
   return useContext(LocalStorageContext);
 };
-
-export { LocalStorageProvider, useLocalStorage };

@@ -54,7 +54,7 @@ const Header = () => {
         </button>
         <button className={buttonUI} onClick={() => navigate("/my-list")}>
           MY LIST
-          <span className="pl-2">
+          <span>
             <Badge />
           </span>
         </button>
