@@ -1,10 +1,9 @@
 import { RiMovie2Line } from "react-icons/ri";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Badge from "./Badge";
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   // TailWindCSS styling
   const buttonUI =
@@ -44,12 +43,7 @@ const Header = () => {
         </div>
       </div>
       <div className="flex mb-2">
-        <button
-          className={buttonUI}
-          onClick={() =>
-            location.pathname === "/my-list" ? navigate(-1) : navigate("/")
-          }
-        >
+        <button className={buttonUI} onClick={() => navigate("/")}>
           SEARCH
         </button>
         <button className={buttonUI} onClick={() => navigate("/my-list")}>

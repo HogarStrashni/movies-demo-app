@@ -1,8 +1,11 @@
 import { useMyMoviesData } from "../services/context";
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 
 const MyListPage = () => {
   const { myMovies }: any = useMyMoviesData();
+
+  const navigate = useNavigate();
 
   return (
     <main className="bg-black bg-movieBGP bg-no-repeat bg-cover bg-center flex-1 overflow-auto">
@@ -13,7 +16,10 @@ const MyListPage = () => {
               {myMovies?.map((item: any) => {
                 const { imdbID, Poster, Title } = item;
                 return (
-                  <div key={imdbID}>
+                  <div
+                    key={imdbID}
+                    onClick={() => navigate(`/?title=${imdbID}`)}
+                  >
                     <MovieCard poster={Poster} title={Title} imdbID={imdbID} />
                   </div>
                 );

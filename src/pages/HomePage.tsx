@@ -57,8 +57,8 @@ function HomePage() {
             i: titleID,
           },
         })
-        .then((response) => setSingleMovie(response.data))
-        .then(() => {
+        .then((response) => {
+          setSingleMovie(response.data);
           setIsLoading(false);
           setIsModalOpen(true);
         })

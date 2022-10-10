@@ -40,16 +40,18 @@ const ModalMovie = ({
     setMyMovies([...myMovies, singleMovie]);
     setIsModalOpen(false);
     infoToasterChanges("Movie successfully added to My List");
-    navigate(`/?query=${queryPart}&page=${pageNumber}`);
+    queryPart
+      ? navigate(`/?query=${queryPart}&page=${pageNumber}`)
+      : navigate("/my-list");
   };
 
   const removeMovieHandler = () => {
-    setMyMovies(
-      myMovies.filter((item: any) => item.imdbID !== singleMovie.imdbID)
-    );
+    setMyMovies(myMovies.filter((item: any) => item.imdbID !== imdbID));
     setIsModalOpen(false);
     infoToasterChanges("Movie successfully removed from My List");
-    navigate(`/?query=${queryPart}&page=${pageNumber}`);
+    queryPart
+      ? navigate(`/?query=${queryPart}&page=${pageNumber}`)
+      : navigate("/my-list");
   };
 
   // TailWindCSS styling
@@ -64,7 +66,7 @@ const ModalMovie = ({
 
   return (
     <>
-      <div className="h-full w-full absolute bg-black opacity-90 z-10" />
+      <div className="h-full w-full absolute bg-black opacity-[0.95] z-10" />
       <main className="h-full w-full absolute z-50 text-gray-200 overflow-auto">
         <div className="flex flex-col min-h-full items-center justify-center">
           <section className="m-4 mb-0 sm:mb-2">
@@ -104,7 +106,9 @@ const ModalMovie = ({
               className={closeButtonUI}
               onClick={() => {
                 setIsModalOpen(false);
-                navigate(`/?query=${queryPart}&page=${pageNumber}`);
+                queryPart
+                  ? navigate(`/?query=${queryPart}&page=${pageNumber}`)
+                  : navigate("/my-list");
               }}
             >
               CLOSE
