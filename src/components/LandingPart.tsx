@@ -1,6 +1,6 @@
 const LandingPart = () => {
   return (
-    <div className="h-[calc(100%-120px)] py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
+    <div className="h-[calc(100%-25%)] py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
       <h1 className="px-4 text-[1.75rem] pb-8 text-blue-400 sm:text-[2.5rem]">
         ADD MOVIE TO YOUR LIST
       </h1>

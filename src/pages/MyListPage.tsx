@@ -1,4 +1,4 @@
-import { useMyMoviesData } from "../services/context";
+import { useMyMoviesData } from "../context/myMoviesContext";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 

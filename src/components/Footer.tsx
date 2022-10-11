@@ -6,6 +6,7 @@ import {
   FaCreativeCommons,
   FaCreativeCommonsBy,
 } from "react-icons/fa";
+import { footerUI } from "../assets/tailwindCSS";
 
 const Footer = () => {
   return (
@@ -31,28 +32,28 @@ const Footer = () => {
         <a
           href="https://www.linkedin.com/in/djordje-matic/"
           target="_blanc"
-          className="hover:text-blue-300 hover:scale-110 transition-all"
+          className={`${footerUI.links}`}
         >
           <FaLinkedin />
         </a>
         <a
           href="https://github.com/HogarStrashni"
           target="_blanc"
-          className="hover:text-blue-300 hover:scale-110 transition-all"
+          className={`${footerUI.links}`}
         >
           <FaGithub />
         </a>
         <a
           href="https://www.freecodecamp.org/HogarStrashni"
           target="_blanc"
-          className="hover:text-blue-300 hover:scale-110 transition-all"
+          className={`${footerUI.links}`}
         >
           <FaFreeCodeCamp />
         </a>
         <a
           href="mailto:djmatic@agfbl.org"
           target="_blanc"
-          className="hover:text-blue-300 hover:scale-110 transition-all"
+          className={`${footerUI.links}`}
         >
           <FaMailBulk />
         </a>

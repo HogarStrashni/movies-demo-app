@@ -1,7 +1,8 @@
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useMyMoviesData } from "../services/context";
-import { infoToasterChanges } from "../services/infoToasterLogic";
+import { useMyMoviesData } from "../context/myMoviesContext";
+import { infoToasterChanges } from "../utils/infoToasterLogic";
+import { modalMovieUI } from "../assets/tailwindCSS";
 
 const ModalMovie = ({
   singleMovie,
@@ -54,16 +55,6 @@ const ModalMovie = ({
       : navigate("/my-list");
   };
 
-  // TailWindCSS styling
-  const dlTagUI = "flex border-b border-gray-500 max-w-lg mt-1 mx-4";
-  const dtTagUI =
-    "min-w-[76px] pl-4 py-1 text-xs font-medium text-gray-400 lg:py-3";
-  const ddTagUI = "pr-6 pt-0.5 text-sm font-medium text-gray-200 lg:py-2.5";
-  const closeButtonUI =
-    "mx-2 pt-2 pb-1.5 px-4 text-sm font-medium opacity-60 text-gray-400 ring-1 ring-gray-400 hover:opacity-100 hover:scale-[1.02] transition-all rounded-lg";
-  const handleButtonUI =
-    "mx-2 pt-2 pb-1.5 px-4 flex items-center justify-center text-sm font-medium opacity-80 text-yellow-500 ring-1 ring-yellow-500 hover:opacity-100 hover:bg-gray-900 hover:scale-[1.02] transition-all rounded-lg";
-
   return (
     <>
       <div className="h-full w-full absolute bg-black opacity-[0.95] z-10" />
@@ -81,9 +72,13 @@ const ModalMovie = ({
               />
             </section>
             <section className="mt-auto pb-4">
-              <dl className={`${dlTagUI}`}>
-                <dt className={`${dtTagUI} flex items-end`}>Rating:</dt>
-                <dd className={`${ddTagUI} flex items-center lg:pb-1.5`}>
+              <dl className={`${modalMovieUI.dlTag}`}>
+                <dt className={`${modalMovieUI.dtTag} flex items-end`}>
+                  Rating:
+                </dt>
+                <dd
+                  className={`${modalMovieUI.ddTag} flex items-center lg:pb-1.5`}
+                >
                   <span className="text-yellow-500 mr-1">
                     <FaStar />
                   </span>
@@ -93,9 +88,11 @@ const ModalMovie = ({
               </dl>
               {movieHelpData.map((item, index) => {
                 return (
-                  <dl key={index} className={`${dlTagUI}`}>
-                    <dt className={`${dtTagUI}`}>{item}:</dt>
-                    <dd className={`${ddTagUI}`}>{movieData[index]}</dd>
+                  <dl key={index} className={`${modalMovieUI.dlTag}`}>
+                    <dt className={`${modalMovieUI.dtTag}`}>{item}:</dt>
+                    <dd className={`${modalMovieUI.ddTag}`}>
+                      {movieData[index]}
+                    </dd>
                   </dl>
                 );
               })}
@@ -103,7 +100,7 @@ const ModalMovie = ({
           </div>
           <div className="mb-4 mt-2 flex justify-center sm:mt-4">
             <button
-              className={closeButtonUI}
+              className={modalMovieUI.closeButton}
               onClick={() => {
                 setIsModalOpen(false);
                 queryPart
@@ -114,14 +111,20 @@ const ModalMovie = ({
               CLOSE
             </button>
             {!myMovieIDs.has(imdbID) ? (
-              <button className={handleButtonUI} onClick={addMovieHandler}>
+              <button
+                className={modalMovieUI.handleButton}
+                onClick={addMovieHandler}
+              >
                 ADD TO MY LIST
                 <span className="text-xl pl-2 -translate-y-0.5">
                   <FaStar />
                 </span>
               </button>
             ) : (
-              <button className={handleButtonUI} onClick={removeMovieHandler}>
+              <button
+                className={modalMovieUI.handleButton}
+                onClick={removeMovieHandler}
+              >
                 REMOVE FROM LIST
                 <span className="text-xl pl-2 -translate-y-0.5">
                   <FaRegStar />

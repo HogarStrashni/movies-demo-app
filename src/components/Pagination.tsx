@@ -1,20 +1,15 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { paginationUI } from "../assets/tailwindCSS";
 
 const Pagination = ({ totalPages, queryPart, pageNumber }: any) => {
   const navigate = useNavigate();
 
-  // TailWindCSS styling
-  const pagButtonUI =
-    "pt-0.5 text-xs font-medium text-yellow-500 bg-black border border-yellow-500 focus:outline-none hover:bg-gray-900 hover:scale-[1.06] transition-all rounded-lg";
-  const pagButtonDisabledUI =
-    "w-8 mx-2 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100";
-
   return (
     totalPages && (
-      <div className="flex justify-center align-center m-6">
+      <div className="max-w-fit mx-auto flex justify-center align-center m-5">
         <button
-          className={`${pagButtonUI} ${pagButtonDisabledUI}`}
+          className={`${paginationUI.button} ${paginationUI.buttonDisabled}`}
           onClick={() =>
             navigate(`/?query=${queryPart}&page=${Number(pageNumber) - 1}`)
           }
@@ -22,11 +17,11 @@ const Pagination = ({ totalPages, queryPart, pageNumber }: any) => {
         >
           <FaChevronLeft className="text-center inline pb-1" />
         </button>
-        <p className="mx-2 text-sm font-medium text-gray-400 italic">
+        <p className="px-2 text-sm font-medium text-yellow-500 italic rounded-lg bg-black bg-opacity-50">
           current page: {pageNumber} / {totalPages}
         </p>
         <button
-          className={`${pagButtonUI} ${pagButtonDisabledUI}`}
+          className={`${paginationUI.button} ${paginationUI.buttonDisabled}`}
           onClick={() =>
             navigate(`/?query=${queryPart}&page=${Number(pageNumber) + 1}`)
           }

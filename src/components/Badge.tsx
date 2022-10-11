@@ -1,4 +1,4 @@
-import { useMyMoviesData } from "../services/context";
+import { useMyMoviesData } from "../context/myMoviesContext";
 
 const Badge = () => {
   const { myMovies }: any = useMyMoviesData();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { axiosInstance } from "../services/httpClient";
+import { getMovies, getMovieByID } from "../services/httpClient";
 
 import SearchBar from "../components/SearchBar";
 import MovieCard from "../components/MovieCard";
@@ -13,6 +13,7 @@ function HomePage() {
   const [movieList, setMovieList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [messageError, setMessageError] = useState("");
 
   const [searchParams] = useSearchParams();
   const queryPart: string = searchParams.get("query") ?? "";
@@ -26,15 +27,8 @@ function HomePage() {
 
   useEffect(() => {
     setIsLoading(true);
-    axiosInstance
-      .get("/", {
-        params: {
-          apikey: import.meta.env.VITE_API_KEY,
-          type: "movie",
-          s: queryPart,
-          page: pageNumber,
-        },
-      })
+    setMessageError("");
+    getMovies(queryPart, pageNumber)
       .then((response) => {
         setMovieList(response.data.Search);
         setTotalPages(Math.ceil(response.data.totalResults / 10));
@@ -43,20 +37,15 @@ function HomePage() {
       .catch((error) => {
         console.log(error.message);
         setIsLoading(false);
+        setMessageError(error.message);
       });
   }, [queryPart, pageNumber]);
 
   useEffect(() => {
     if (titleID) {
       setIsLoading(true);
-      axiosInstance
-        .get("/", {
-          params: {
-            apikey: import.meta.env.VITE_API_KEY,
-            type: "movie",
-            i: titleID,
-          },
-        })
+      setMessageError("");
+      getMovieByID(titleID)
         .then((response) => {
           setSingleMovie(response.data);
           setIsLoading(false);
@@ -65,6 +54,7 @@ function HomePage() {
         .catch((error) => {
           console.log(error.message);
           setIsLoading(false);
+          setMessageError(error.message);
         });
     }
   }, [titleID]);
@@ -85,11 +75,7 @@ function HomePage() {
         />
       )}
 
-      <main
-        className={`bg-black ${
-          !movieList?.length && "bg-movieBGP bg-no-repeat bg-cover bg-center"
-        } flex-1 overflow-auto`}
-      >
+      <main className="bg-black bg-movieBGP bg-no-repeat bg-cover bg-center flex-1 sm:overflow-auto">
         <div className="max-w-lg mx-auto pt-6 flex justify-center">
           <SearchBar queryPart={queryPart} />
         </div>
@@ -98,7 +84,9 @@ function HomePage() {
         {queryPart && !movieList?.length && !isLoading && (
           <div className="h-[calc(100%-25%)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
             <p className="text-2xl">
-              The search query should contain the exact word of the movie title
+              {!messageError
+                ? "The search query should contain the exact word of the movie title"
+                : messageError}
             </p>
           </div>
         )}
