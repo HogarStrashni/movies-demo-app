@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {},
     backgroundImage: {
-      movieBGP: "url('./src/assets/homeBG.jpg')",
+      movieBGP: "url('./assets/homeBG.jpg')",
     },
   },
   plugins: [],
