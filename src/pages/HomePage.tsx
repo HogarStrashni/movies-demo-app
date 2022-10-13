@@ -66,57 +66,57 @@ function HomePage() {
   return (
     <>
       {isLoading && <LoadingStage />}
-      {isModalOpen && (
+      {isModalOpen ? (
         <ModalMovie
           singleMovie={singleMovie}
           setIsModalOpen={setIsModalOpen}
           queryPart={queryPart}
           pageNumber={pageNumber}
         />
-      )}
-
-      <main className="bg-black bg-movieBGP bg-no-repeat bg-cover bg-center flex-1 sm:overflow-auto">
-        <div className="max-w-lg mx-auto pt-6 flex justify-center">
-          <SearchBar queryPart={queryPart} />
-        </div>
-
-        {!queryPart && !titleID && <LandingPart />}
-        {queryPart && !movieList?.length && !isLoading && (
-          <div className="h-[calc(100%-25%)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
-            <p className="text-2xl">
-              {!messageError
-                ? "The search query should contain the exact word of the movie title"
-                : messageError}
-            </p>
+      ) : (
+        <main className="bg-black bg-movieBGP bg-no-repeat bg-cover bg-center flex-1 sm:overflow-auto">
+          <div className="max-w-lg mx-auto pt-6 flex justify-center">
+            <SearchBar queryPart={queryPart} />
           </div>
-        )}
 
-        <div className="flex justify-center">
-          <section className="mx-auto mt-6 grid grid-cols-1 gap-4 justify-center content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {movieList?.map((item) => {
-              const { imdbID, Poster, Title } = item;
-              return (
-                <div
-                  key={imdbID}
-                  onClick={() =>
-                    navigate(
-                      `/?title=${imdbID}&query=${queryPart}&page=${pageNumber}`
-                    )
-                  }
-                >
-                  <MovieCard poster={Poster} title={Title} imdbID={imdbID} />
-                </div>
-              );
-            })}
-          </section>
-        </div>
+          {!queryPart && !titleID && <LandingPart />}
+          {queryPart && !movieList?.length && !isLoading && (
+            <div className="h-[calc(100%-25%)] pb-8 py-auto text-gray-300 text-center flex flex-col justify-center flex-1">
+              <p className="text-2xl">
+                {!messageError
+                  ? "The search query should contain the exact word of the movie title"
+                  : messageError}
+              </p>
+            </div>
+          )}
 
-        <Pagination
-          totalPages={totalPages}
-          queryPart={queryPart}
-          pageNumber={pageNumber}
-        />
-      </main>
+          <div className="flex justify-center">
+            <section className="mx-auto mt-6 grid grid-cols-1 gap-4 justify-center content-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {movieList?.map((item) => {
+                const { imdbID, Poster, Title } = item;
+                return (
+                  <div
+                    key={imdbID}
+                    onClick={() =>
+                      navigate(
+                        `/?title=${imdbID}&query=${queryPart}&page=${pageNumber}`
+                      )
+                    }
+                  >
+                    <MovieCard poster={Poster} title={Title} imdbID={imdbID} />
+                  </div>
+                );
+              })}
+            </section>
+          </div>
+
+          <Pagination
+            totalPages={totalPages}
+            queryPart={queryPart}
+            pageNumber={pageNumber}
+          />
+        </main>
+      )}
     </>
   );
 }
