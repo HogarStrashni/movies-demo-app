@@ -15,7 +15,12 @@ const MovieCard = ({ poster, title, imdbID }: any) => {
           </div>
         )}
         <div className="h-full w-full rounded-xl overflow-hidden">
-          <img src={poster} alt={`image: ${title}`} className="w-full h-full" />
+          <img
+            src={poster}
+            alt={`image: ${title}`}
+            title={title}
+            className="w-full h-full"
+          />
         </div>
       </div>
     </article>

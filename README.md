@@ -18,8 +18,8 @@ In the process of making this project, I tried to cover as many things as possib
 - Handling Errors
 - Hooks
 
-        useState, useEffect, useRef, useLayoutEffect, useContext from "react"
-        useNavigate, useLocation, useSearchParams from "react-router-dom"
+        useState, useEffect, useContext from "react"
+        useNavigate, useSearchParams from "react-router-dom"
         useDebounce from "use-debounce"
 
 - Styling and CSS
